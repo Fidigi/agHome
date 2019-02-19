@@ -1,7 +1,7 @@
 <?php
 namespace App\Service;
 
-use \Curl\Curl;
+use Curl\Curl;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\ORMException;
 use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
@@ -36,9 +36,9 @@ class WheatherManager
     }
     
     /**
-     * @return Wheather
+     * @return Wheather | null
      */
-    public function generate(): Wheather
+    public function generate(): ?Wheather
     {
         $location = '48.8568,2.3508';
         $data = [];
@@ -47,7 +47,8 @@ class WheatherManager
         $this->curl->setBasicAuthentication('studdy_laurent', 'KrGbWt7v4N2uT');
         $this->curl->get('https://api.meteomatics.com/now/t_2m:C,relative_humidity_2m:p/'.$location.'/json');
         if ($this->curl->error) {
-            echo $this->curl->error_code;
+            self::logError($this->curl->error_code);
+            return null;
         }
         else {
             $curlData = json_decode($this->curl->response)->data;

@@ -1,6 +1,7 @@
 <?php
 namespace App\Tests\Service;
 
+use Curl\Curl;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\ORMException;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -17,6 +18,9 @@ class WheatherManagerTest extends TestCase
 
     /** @var MockObject|ObjectManager */
     private $entityManager;
+
+    /** @var Curl */
+    protected $curl;
     
     /** @var WheatherManager */
     private $manager;
@@ -27,7 +31,8 @@ class WheatherManagerTest extends TestCase
     {
         $this->wheather = $this->createMock(Wheather::class);
         $this->entityManager = $this->createMock(ObjectManager::class);
-        $this->manager = new WheatherManager($this->entityManager);
+        $this->curl = $this->createMock(Curl::class);
+        $this->manager = new WheatherManager($this->entityManager,$this->curl);
 
         $this->faker = Factory::create();
     }
@@ -66,5 +71,13 @@ class WheatherManagerTest extends TestCase
         $this->entityManager->method('persist')->will($this->throwException(new ORMException('faillure')));
         
         self::assertEquals(false, $this->manager->save($this->wheather));
+    }
+
+    public function testCurlFaillure()
+    {
+        $this->curl->error = true;
+        $this->curl->error_code = 500;
+        
+        self::assertEquals(false, $this->manager->generate());
     }
 }
