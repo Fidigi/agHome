@@ -7,3 +7,14 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+###> eclipse ###
+/.project
+/.buildpath
+/.settings
+###< eclipse ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###
