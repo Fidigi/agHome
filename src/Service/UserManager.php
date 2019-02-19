@@ -90,8 +90,7 @@ class UserManager
         $user->setEmail($data['email']);
         $user->setUsername($data['username']);
         
-        $password = $this->passwordEncoder->encodePassword($user, $data['password']);
-        $user->setPassword($password);
+        $this->changePassword($user,$data['password']);
         
         $user->setActive(false);
         $user->setRoles([self::USER_ROLE_USER]);

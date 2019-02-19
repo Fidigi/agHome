@@ -1,6 +1,7 @@
 <?php
 namespace App\Service;
 
+use \Curl\Curl;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\ORMException;
 use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
@@ -16,14 +17,22 @@ class WheatherManager
      * @var ObjectManager
      */
     protected $entityManager;
-    
-    
+
+    /**
+     * @var Curl
+     */
+    protected $curl;
+
     /**
      * @param ObjectManager $entityManager
      */
-    public function __construct(ObjectManager $entityManager)
+    public function __construct(
+        ObjectManager $entityManager,
+        Curl $curl
+    )
     {
         $this->entityManager = $entityManager;
+        $this->curl = $curl;
     }
     
     /**
@@ -35,14 +44,13 @@ class WheatherManager
         $data = [];
         $data['location'] = $location;
         
-        $curl = new \Curl\Curl();
-        $curl->setBasicAuthentication('studdy_laurent', 'KrGbWt7v4N2uT');
-        $curl->get('https://api.meteomatics.com/now/t_2m:C,relative_humidity_2m:p/'.$location.'/json');
-        if ($curl->error) {
-            echo $curl->error_code;
+        $this->curl->setBasicAuthentication('studdy_laurent', 'KrGbWt7v4N2uT');
+        $this->curl->get('https://api.meteomatics.com/now/t_2m:C,relative_humidity_2m:p/'.$location.'/json');
+        if ($this->curl->error) {
+            echo $this->curl->error_code;
         }
         else {
-            $curlData = json_decode($curl->response)->data;
+            $curlData = json_decode($this->curl->response)->data;
             foreach ($curlData as $paramData){
                 if($paramData->parameter == 't_2m:C'){
                     $data['temperature'] = ($paramData->coordinates[0]->dates[0]->value);
