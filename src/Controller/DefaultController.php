@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -46,4 +47,24 @@ class DefaultController extends AbstractController
             'h1_title' => "Profile page!",
         ]);
     }
+    
+    /**
+     * @Route("/api/", name="app_api_slashe")
+     */
+    public function apiSlashe()
+    {
+        return $this->api();
+    }
+    
+    /**
+     * @Route("/api", name="app_api")
+     */
+    public function api()
+    {
+        $data = [
+            'message' => "OK"
+        ];
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
+    
 }
