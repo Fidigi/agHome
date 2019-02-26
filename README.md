@@ -26,3 +26,9 @@ Specific
 ========
 - composer require curl/curl
 - composer require symfony/swiftmailer-bundle
+
+API
+========
+- composer require overblog/graphql-bundle
+- composer require cors
+- composer require --dev overblog/graphiql-bundle

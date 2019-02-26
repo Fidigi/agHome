@@ -28,3 +28,13 @@ services:
 
     Curl\Curl:
         public: true
+
+    App\GraphQL\Type\:
+        resource: '../src/GraphQL/Type'
+        tags: ['overblog_graphql.type']
+    App\GraphQL\Resolver\:
+        resource: '../src/GraphQL/Resolver'
+        tags: ['overblog_graphql.resolver']
+    App\GraphQL\Mutation\:
+        resource: '../src/GraphQL/Mutation'
+        tags: ['overblog_graphql.mutation']

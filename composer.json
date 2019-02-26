@@ -6,6 +6,8 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "curl/curl": "^2.2",
+        "nelmio/cors-bundle": "^1.5",
+        "overblog/graphql-bundle": "^0.11.11",
         "sensio/framework-extra-bundle": "^5.2",
         "symfony/asset": "4.2.*",
         "symfony/console": "4.2.*",
@@ -70,6 +72,7 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.1",
         "fzaninotto/faker": "^1.8",
+        "overblog/graphiql-bundle": "^0.1.2",
         "sensiolabs/security-checker": "^5.0",
         "symfony/maker-bundle": "^1.11",
         "symfony/profiler-pack": "^1.0",

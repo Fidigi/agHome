@@ -1,0 +1,29 @@
+Query:
+    type: "object"
+    config:
+        description: "User ORM repository"
+        fields:
+            userAuth:
+                type: "User"
+                resolve: "@=resolver('UserAuth')"
+            user:
+                type: "User"
+                args:
+                    id:
+                        description: "Resolves using the User id."
+                        type: "Int"
+                resolve: "@=resolver('User', [args])"
+            users:
+                type: "UserList"
+                args:
+                    limit:
+                        description: "limit"
+                        type: "Int"
+                resolve: "@=resolver('UserList', [args])"
+            tokens:
+                type: "TokenList"
+                args:
+                    limit:
+                        description: "limit"
+                        type: "Int"
+                resolve: "@=resolver('TokenList', [args])"

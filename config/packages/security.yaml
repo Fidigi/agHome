@@ -12,7 +12,7 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         api:
-            pattern: ^/api
+            pattern: ^/(graphql|api)/
             guard:
                 authenticators:
                    - App\Security\ApiTokenAuthenticator

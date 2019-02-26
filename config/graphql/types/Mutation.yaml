@@ -1,0 +1,11 @@
+Mutation:
+  type: "object"
+  config:
+    fields:
+      token_new:
+        type: "Token!"
+        args:
+            token:
+              type: "TokenInput!"
+        resolve: "@=mutation('tokenNew', [args['token']])"
+        description: "Add new Token API."

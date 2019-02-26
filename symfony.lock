@@ -95,6 +95,18 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "nelmio/cors-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "f0436fc35fca88eada758311f8de43bfb61f1980"
+        },
+        "files": [
+            "config/packages/nelmio_cors.yaml"
+        ]
+    },
     "nikic/php-parser": {
         "version": "v4.2.1"
     },
@@ -103,6 +115,35 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.2"
+    },
+    "overblog/graphiql-bundle": {
+        "version": "0.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.1",
+            "ref": "fe8d172f2480efc598f5a8be0e732656d3594cec"
+        },
+        "files": [
+            "config/routes/dev/graphiql.yaml"
+        ]
+    },
+    "overblog/graphql-bundle": {
+        "version": "0.11",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.11",
+            "ref": "80a27b90b4928728bc2afe3ff1198826e033285c"
+        },
+        "files": [
+            "config/graphql/types/.gitignore",
+            "config/packages/graphql.yaml",
+            "config/routes/graphql.yaml"
+        ]
+    },
+    "overblog/graphql-php-generator": {
+        "version": "v0.7.4"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -180,6 +221,9 @@
         "version": "v4.2.3"
     },
     "symfony/event-dispatcher": {
+        "version": "v4.2.3"
+    },
+    "symfony/expression-language": {
         "version": "v4.2.3"
     },
     "symfony/filesystem": {
@@ -361,6 +405,9 @@
     },
     "twig/twig": {
         "version": "v2.6.2"
+    },
+    "webonyx/graphql-php": {
+        "version": "v0.12.6"
     },
     "zendframework/zend-code": {
         "version": "3.3.1"

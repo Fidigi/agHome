@@ -1,0 +1,27 @@
+Token:
+    type: object
+    config:
+        description: "An Token"
+        fields:
+            user:
+                type: "User"
+            token:
+                type: "String!"
+            type:
+                type: "String!"
+
+TokenList:
+    type: object
+    config:
+        description: "List of Tokens"
+        fields:
+            token:
+                type: "[Token]"
+                description: "Token."
+
+TokenInput:
+    type: "input-object"
+    config:
+        fields:
+            user_uuid:
+                type: "String!"

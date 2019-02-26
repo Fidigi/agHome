@@ -48,23 +48,4 @@ class DefaultController extends AbstractController
         ]);
     }
     
-    /**
-     * @Route("/api/", name="app_api_slashe")
-     */
-    public function apiSlashe()
-    {
-        return $this->api();
-    }
-    
-    /**
-     * @Route("/api", name="app_api")
-     */
-    public function api()
-    {
-        $data = [
-            'message' => "OK"
-        ];
-        return new JsonResponse($data, Response::HTTP_OK);
-    }
-    
 }

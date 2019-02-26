@@ -1,0 +1,32 @@
+User:
+    type: object
+    config:
+        description: "An User"
+        fields:
+            uuid:
+                type: "String!"
+                description: "The unique ID of the user."
+            displayName:
+                type: "String!"
+            firstname:
+                type: "String!"
+            lastname:
+                type: "String!"
+            tokens:
+                type: "[Token]"
+
+UserList:
+    type: object
+    config:
+        description: "List of Users"
+        fields:
+            user:
+                type: "[User]"
+                description: "An User"
+
+UserInput:
+    type: "input-object"
+    config:
+        fields:
+            firstname:
+                type: "String!"
