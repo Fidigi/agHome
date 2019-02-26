@@ -32,3 +32,11 @@ API
 - composer require overblog/graphql-bundle
 - composer require cors
 - composer require --dev overblog/graphiql-bundle
+
+Run
+========
+chown nobody:nobody -R .
+chmod -R 777 .
+
+php -S 192.168.1.17:8000 -t public
+php -S 127.0.0.1:8000 -t public

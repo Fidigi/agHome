@@ -9,6 +9,6 @@ nelmio_cors:
     paths:
         '^/graphql': 
             allow_origin: ['*']
-            allow_headers: ['Content-Type', 'X-AUTH-TOKEN']
             allow_methods: ['OPTIONS', 'POST', 'PUT', 'GET', 'DELETE']
+            allow_headers: ['Content-Type', 'X-AUTH-TOKEN']
         '^/': ~
