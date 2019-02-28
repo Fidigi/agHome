@@ -2,6 +2,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use App\Service\TokenManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -9,10 +10,14 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AccountSecurityFixtures extends Fixture
 {
     private $passwordEncoder;
+    private $tokenManager;
     
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
-    {
+    public function __construct(
+        UserPasswordEncoderInterface $passwordEncoder, 
+        TokenManager $tokenManager
+    ) {
         $this->passwordEncoder = $passwordEncoder;
+        $this->tokenManager = $tokenManager;
     }
     
     public function load(ObjectManager $manager)
@@ -32,6 +37,7 @@ class AccountSecurityFixtures extends Fixture
             $user->setUpdatedAt(new \DateTime());
             
             $manager->persist($user);
+            $this->tokenManager->createTokenApiForUser($user);
         }
         
         $manager->flush();

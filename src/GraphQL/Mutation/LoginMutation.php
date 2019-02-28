@@ -7,20 +7,7 @@ use App\Service\TokenManager;
 use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\MutationInterface;
 
-/*
-mutation{
-  token_new(token:{user_uuid:"6fd9c2fa-ac6e-46c8-ae5e-fb2eb78b3ce6"}){
-    token,
-    user{
-      tokens{
-        token
-      }
-    }
-  }
-}
-*/
-
-class TokenMutation implements MutationInterface , AliasedInterface
+class LoginMutation implements MutationInterface , AliasedInterface
 {
     
     /**
@@ -51,14 +38,15 @@ class TokenMutation implements MutationInterface , AliasedInterface
      */
     public static function getAliases(): array{
         return [
-            'new' => 'tokenNew' ,
+            'new' => 'loginNew' ,
   
         ];
     }
 
     public function new(array $input){
-        $user = $this->userRepository->findOneByUuid($input['user_uuid']);
-        return $this->tokenManager->createTokenApiForUser($user);
+        /*$user = $this->userRepository->findOneByUuid($input['user_uuid']);
+        return $this->tokenManager->createTokenApiForUser($user);*/
+        return $input;
     }
 
 }
