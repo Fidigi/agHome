@@ -7,6 +7,17 @@ use App\Service\TokenManager;
 use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\MutationInterface;
 
+/*
+mutation{
+  signin(crendentials:{username:"admin",password:"pass"}){
+    uuid,
+    tokens{
+      token
+    }
+  }
+}
+*/
+
 class LoginMutation implements MutationInterface , AliasedInterface
 {
     
@@ -44,9 +55,9 @@ class LoginMutation implements MutationInterface , AliasedInterface
     }
 
     public function new(array $input){
-        /*$user = $this->userRepository->findOneByUuid($input['user_uuid']);
-        return $this->tokenManager->createTokenApiForUser($user);*/
-        return $input;
+        $user = $this->userRepository->findOneByUsername('admin');
+        $token = $user->getTokens();
+        return $user;
     }
 
 }

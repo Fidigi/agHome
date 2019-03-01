@@ -9,7 +9,7 @@ use Overblog\GraphQLBundle\Definition\Resolver\MutationInterface;
 
 /*
 mutation{
-  token_new(token:{user_uuid:"6fd9c2fa-ac6e-46c8-ae5e-fb2eb78b3ce6"}){
+  token_new(token:{user_uuid:"4ad11d95-5f89-40da-b118-76ec96f57cb6"}){
     token,
     user{
       tokens{

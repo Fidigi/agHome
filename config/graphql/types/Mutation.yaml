@@ -3,11 +3,11 @@ Mutation:
   config:
     fields:
       signin:
-        type: "Token!"
+        type: "User"
         args:
           crendentials:
             type: "App\\GraphQL\\Type\\Input\\LoginInput!"
-        resolve: "@=mutation('App\\GraphQL\\Mutation\\LoginMutation::loginNew', [args])"
+        resolve: "@=mutation('loginNew', [args['crendentials']])"
         description: "signin"
       token_new:
         type: "Token!"
