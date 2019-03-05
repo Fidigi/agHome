@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Overblog\GraphQLBundle\Definition\Argument;
 use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
+use Symfony\Component\Security\Core\Security;
 
 class UserResolver implements ResolverInterface, AliasedInterface
 {
@@ -18,7 +19,11 @@ class UserResolver implements ResolverInterface, AliasedInterface
      *
      * @param UserRepository $userRepository
      */
-    public function __construct(UserRepository $userRepository){
+    public function __construct(
+        Security $security, 
+        UserRepository $userRepository
+    ){
+        $this->security = $security;
         $this->userRepository = $userRepository;
     }
 
@@ -31,11 +36,20 @@ class UserResolver implements ResolverInterface, AliasedInterface
     }
 
     /**
+     * @param Argument $args
+     * @return null|object
+     */
+    public function resolveAuth(){
+        return $this->security->getUser();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function getAliases(): array{
         return [
             'resolve' => 'User',
+            'resolveAuth' => 'UserAuth',
         ];
     }
 

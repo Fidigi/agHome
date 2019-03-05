@@ -11,11 +11,12 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        #api:
-        #    pattern: ^/(graphql|api)/
-        #    guard:
-        #        authenticators:
-        #           - App\Security\ApiTokenAuthenticator
+        api:
+            pattern: ^/(graphql|api)/
+            anonymous: true
+            guard:
+                authenticators:
+                    - App\Security\ApiTokenAuthenticator
         main:
             anonymous: true
             guard:

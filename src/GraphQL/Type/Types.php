@@ -19,7 +19,10 @@ use GraphQL\Type\Definition\ListOfType;
 use GraphQL\Type\Definition\NonNull;
 use GraphQL\Type\Definition\Type;
 
+use App\GraphQL\Type\Definition\TokenType;
+use App\GraphQL\Type\Definition\UserType;
 use App\GraphQL\Type\Input\LoginInput;
+use App\GraphQL\Type\Input\UserUuidInput;
 
 /**
  * Class Types
@@ -33,18 +36,6 @@ use App\GraphQL\Type\Input\LoginInput;
  */
 class Types
 {
-    // Object types:
-    //private static $user;
-
-    /**
-     * @return UserType
-     */
-    /*public static function user()
-    {
-        return self::$user ?: (self::$user = new UserType());
-    }*/
-
-
     // Interface types
     //private static $node;
 
@@ -59,6 +50,7 @@ class Types
     
     // Input types
     private static $loginInput;
+    private static $userUuidInput;
     
     /**
      * @return LoginInput
@@ -66,6 +58,14 @@ class Types
     public static function loginInput()
     {
         return self::$loginInput ?: (self::$loginInput = new LoginInput());
+    }
+    
+    /**
+     * @return UserUuidInput
+     */
+    public static function userUuidInput()
+    {
+        return self::$userUuidInput ?: (self::$userUuidInput = new UserUuidInput());
     }
 
 

@@ -74,6 +74,16 @@ class TokenManager
         $data = [];
         $data['user']=$user;
         $data['type']=self::TOKEN_TYPE_API;
+
+        //Invalider ancien token
+        $tokens = $this->entityManager->getRepository(Token::class)->findBy($data);
+        foreach ($tokens as $token) {
+            if($token->isExpired() === false){
+                $token->setExpiredAt(null);
+                self::save($token);
+            }
+        }
+
         return self::createFromArray($data);
     }
     

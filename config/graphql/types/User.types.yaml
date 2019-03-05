@@ -8,12 +8,18 @@ User:
                 description: "The unique ID of the user."
             displayName:
                 type: "String!"
+                access: "@=hasRole('ROLE_USER')"
             firstname:
                 type: "String!"
+                access: "@=hasRole('ROLE_USER')"
             lastname:
                 type: "String!"
+                access: "@=hasRole('ROLE_USER')"
+            roles:
+                type: "[String]!"
             tokens:
                 type: "[Token]"
+                access: "@=hasRole('ROLE_USER')"
 
 UserList:
     type: object
@@ -23,10 +29,3 @@ UserList:
             user:
                 type: "[User]"
                 description: "An User"
-
-UserInput:
-    type: "input-object"
-    config:
-        fields:
-            firstname:
-                type: "String!"

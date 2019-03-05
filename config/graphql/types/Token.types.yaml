@@ -18,10 +18,3 @@ TokenList:
             token:
                 type: "[Token]"
                 description: "Token."
-
-TokenInput:
-    type: "input-object"
-    config:
-        fields:
-            user_uuid:
-                type: "String!"

@@ -6,14 +6,12 @@ use App\Repository\UserRepository;
 use App\Service\TokenManager;
 use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\MutationInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /*
 mutation{
   signin(crendentials:{username:"admin",password:"pass"}){
-    uuid,
-    tokens{
-      token
-    }
+    token
   }
 }
 */
@@ -37,11 +35,13 @@ class LoginMutation implements MutationInterface , AliasedInterface
      */
     public function __construct(
         UserRepository $userRepository,
-        TokenManager $tokenManager
+        TokenManager $tokenManager,
+        UserPasswordEncoderInterface $passwordEncoder
     )
     {
         $this->userRepository = $userRepository;
         $this->tokenManager = $tokenManager;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
@@ -50,14 +50,17 @@ class LoginMutation implements MutationInterface , AliasedInterface
     public static function getAliases(): array{
         return [
             'new' => 'loginNew' ,
-  
         ];
     }
 
     public function new(array $input){
-        $user = $this->userRepository->findOneByUsername('admin');
-        $token = $user->getTokens();
-        return $user;
+        $user = $this->userRepository->findOneByUsernameOrEmail($input['username']);
+  
+        if ( $this->passwordEncoder->isPasswordValid($user, $input['password']) == false){
+          return null;
+        }
+
+        return $this->tokenManager->createTokenApiForUser($user);
     }
 
 }

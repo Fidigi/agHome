@@ -8,7 +8,7 @@ trait EntityExpirableTrait
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     protected $expiredAt;
 
@@ -21,6 +21,6 @@ trait EntityExpirableTrait
     
     public function isExpired(): bool
     {
-        return $this->expiredAt !== 0 || $this->expiredAt > time();
+        return !($this->expiredAt !== 0 || $this->expiredAt > time());
     }
 }

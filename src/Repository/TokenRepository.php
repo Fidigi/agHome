@@ -18,4 +18,14 @@ class TokenRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Token::class);
     }
+    
+    /*public function findValideTokenBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+    {
+        return $this->createQueryBuilder('t')
+        ->where('t.expired_at != 0 AND t.expired_at = :email')
+        ->setParameter('username', $username)
+        ->setParameter('email', $username)
+        ->getQuery()
+        ->getOneOrNullResult();
+    }*/
 }
