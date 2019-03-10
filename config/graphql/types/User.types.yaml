@@ -17,15 +17,4 @@ User:
                 access: "@=hasRole('ROLE_USER')"
             roles:
                 type: "[String]!"
-            tokens:
-                type: "[Token]"
                 access: "@=hasRole('ROLE_USER')"
-
-UserList:
-    type: object
-    config:
-        description: "List of Users"
-        fields:
-            user:
-                type: "[User]"
-                description: "An User"

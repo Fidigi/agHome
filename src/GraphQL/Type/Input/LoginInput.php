@@ -18,6 +18,10 @@ class LoginInput extends InputObjectType
                 'password' => [
                     'type' => Types::nonNull(Types::string()),
                     'description' => 'Password'
+                ],
+                'remember' => [
+                    'type' => Types::nonNull(Types::boolean()),
+                    'description' => 'Remember'
                 ]
             ]
         ];

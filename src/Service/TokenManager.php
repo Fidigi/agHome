@@ -16,6 +16,11 @@ class TokenManager
     const TOKEN_TYPE_LOST = 'LOST';
     const TOKEN_TYPE_API = 'API';
 
+    const TOKEN_REGISTER_DURATION = 'now +1 day';
+    const TOKEN_LOST_DURATION = 'now +10 min';
+    const TOKEN_API_LONG_DURATION = 'now +1 month';
+    const TOKEN_API_SHORT_DURATION = 'now +10 hours';
+
     use LoggerTrait;
 
     /**
@@ -50,6 +55,7 @@ class TokenManager
         $data = [];
         $data['user']=$user;
         $data['type']=self::TOKEN_TYPE_REGISTER;
+        $data['expired_at']=self::TOKEN_REGISTER_DURATION;
         return self::createFromArray($data);
     }
 
@@ -62,6 +68,7 @@ class TokenManager
         $data = [];
         $data['user']=$user;
         $data['type']=self::TOKEN_TYPE_LOST;
+        $data['expired_at']=self::TOKEN_LOST_DURATION;
         return self::createFromArray($data);
     }
 
@@ -69,7 +76,7 @@ class TokenManager
      * @param User $user
      * @return Token
      */
-    public function createTokenApiForUser(User $user)
+    public function createTokenApiForUser(User $user, Bool $duration = false)
     {
         $data = [];
         $data['user']=$user;
@@ -83,6 +90,9 @@ class TokenManager
                 self::save($token);
             }
         }
+
+        if($duration) $data['expired_at']=self::TOKEN_API_LONG_DURATION; 
+        else $data['expired_at']=self::TOKEN_API_SHORT_DURATION;
 
         return self::createFromArray($data);
     }
@@ -105,6 +115,9 @@ class TokenManager
         $token->setType($data['type']);
         
         $token->setCreatedAt(new \Datetime());
+        if($data['expired_at']){
+            $token->setExpiredAt(new \Datetime($data['expired_at']));
+        }
         
         self::save($token);
         return $token;

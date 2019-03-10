@@ -9,12 +9,5 @@ Token:
                 type: "String!"
             type:
                 type: "String!"
-
-TokenList:
-    type: object
-    config:
-        description: "List of Tokens"
-        fields:
-            token:
-                type: "[Token]"
-                description: "Token."
+            expired:
+                type: "Boolean!"

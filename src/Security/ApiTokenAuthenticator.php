@@ -56,7 +56,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
             'type' => TokenManager::TOKEN_TYPE_API
         ]);
         
-        if ($token === null) {
+        if ($token === null || $token->isExpired()) {
             return;
         }
 

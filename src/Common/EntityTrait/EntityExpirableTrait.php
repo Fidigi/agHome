@@ -21,6 +21,6 @@ trait EntityExpirableTrait
     
     public function isExpired(): bool
     {
-        return !($this->expiredAt !== 0 || $this->expiredAt > time());
+        return ($this->expiredAt === 0 || $this->expiredAt < time());
     }
 }

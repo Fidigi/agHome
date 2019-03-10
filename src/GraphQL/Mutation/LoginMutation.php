@@ -60,7 +60,7 @@ class LoginMutation implements MutationInterface , AliasedInterface
           return null;
         }
 
-        return $this->tokenManager->createTokenApiForUser($user);
+        return $this->tokenManager->createTokenApiForUser($user, $input['remember']);
     }
 
 }

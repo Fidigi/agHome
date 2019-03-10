@@ -6,17 +6,3 @@ Query:
             userAuth:
                 type: "User"
                 resolve: "@=resolver('UserAuth')"
-            user:
-                type: "User"
-                args:
-                    id:
-                        description: "Resolves using the User id."
-                        type: "Int"
-                resolve: "@=resolver('User', [args])"
-            tokens:
-                type: "TokenList"
-                args:
-                    limit:
-                        description: "limit"
-                        type: "Int"
-                resolve: "@=resolver('TokenList', [args])"
