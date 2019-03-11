@@ -6,3 +6,6 @@ Query:
             userAuth:
                 type: "User"
                 resolve: "@=resolver('UserAuth')"
+            listList:
+                type: "[List]"
+                resolve: "@=resolver('listList')"

@@ -7,7 +7,3 @@ Token:
                 type: "User"
             token:
                 type: "String!"
-            type:
-                type: "String!"
-            expired:
-                type: "Boolean!"

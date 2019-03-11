@@ -7,7 +7,7 @@ Mutation:
         args:
           crendentials:
             type: "App\\GraphQL\\Type\\Input\\LoginInput!"
-        resolve: "@=mutation('loginNew', [args['crendentials']])"
+        resolve: "@=mutation('login', [args['crendentials']])"
         description: "signin"
       token_new:
         type: "Token"

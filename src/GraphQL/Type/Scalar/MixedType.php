@@ -1,12 +1,18 @@
 <?php
-namespace AppContext\Type\Scalar;
+namespace App\GraphQL\Type\Scalar;
 
 use GraphQL\Error\Error;
 use GraphQL\Language\AST\Node;
 use GraphQL\Type\Definition\ScalarType;
+use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 
-class MixedType extends ScalarType
+class MixedType extends ScalarType implements AliasedInterface
 {
+    public static function getAliases()
+    {
+        return ['Mixed', 'Mixed'];
+    }
+
     /**
      * Serializes an internal value to include in a response.
      *

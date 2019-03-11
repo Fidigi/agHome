@@ -49,11 +49,11 @@ class LoginMutation implements MutationInterface , AliasedInterface
      */
     public static function getAliases(): array{
         return [
-            'new' => 'loginNew' ,
+            'login' => 'login' ,
         ];
     }
 
-    public function new(array $input){
+    public function login(array $input){
         $user = $this->userRepository->findOneByUsernameOrEmail($input['username']);
   
         if ( $this->passwordEncoder->isPasswordValid($user, $input['password']) == false){

@@ -1,20 +1,18 @@
-User:
+List:
     type: object
     config:
-        description: "An User"
+        description: "An List"
         fields:
-            uuid:
-                type: "String!"
-                description: "The unique ID of the user."
-            displayName:
+            id:
+                type: "ID!"
+                description: "The unique ID of the list."
+                access: "@=hasRole('ROLE_USER')"
+            tag:
                 type: "String!"
                 access: "@=hasRole('ROLE_USER')"
-            firstname:
+            label:
                 type: "String!"
                 access: "@=hasRole('ROLE_USER')"
-            lastname:
+            value:
                 type: "String!"
-                access: "@=hasRole('ROLE_USER')"
-            roles:
-                type: "[String]!"
                 access: "@=hasRole('ROLE_USER')"

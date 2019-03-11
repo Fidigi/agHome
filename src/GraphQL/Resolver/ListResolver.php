@@ -6,8 +6,9 @@ use App\Repository\UserRepository;
 use Overblog\GraphQLBundle\Definition\Argument;
 use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
+use Symfony\Component\Security\Core\Security;
 
-class UserListResolver implements ResolverInterface, AliasedInterface
+class ListResolver implements ResolverInterface, AliasedInterface
 {
     /**
      * @var UserRepository
@@ -18,7 +19,11 @@ class UserListResolver implements ResolverInterface, AliasedInterface
      *
      * @param UserRepository $userRepository
      */
-    public function __construct(UserRepository $userRepository){
+    public function __construct(
+        Security $security, 
+        UserRepository $userRepository
+    ){
+        $this->security = $security;
         $this->userRepository = $userRepository;
     }
 
@@ -27,7 +32,15 @@ class UserListResolver implements ResolverInterface, AliasedInterface
      * @return null|object
      */
     public function resolve(Argument $args){
-        return ['user' => $this->userRepository->findBy(
+        return $this->userRepository->find($args['id']);
+    }
+
+    /**
+     * @param Argument $args
+     * @return null|object
+     */
+    public function resolveList(Argument $args){
+        return ['list' => $this->userRepository->findBy(
             [],
             [],
             $args['limit'],
@@ -40,7 +53,8 @@ class UserListResolver implements ResolverInterface, AliasedInterface
      */
     public static function getAliases(): array{
         return [
-            'resolve' => 'UserList',
+            'resolve' => 'List',
+            'resolveList' => 'ListList',
         ];
     }
 

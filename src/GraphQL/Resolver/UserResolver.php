@@ -39,6 +39,19 @@ class UserResolver implements ResolverInterface, AliasedInterface
      * @param Argument $args
      * @return null|object
      */
+    public function resolveList(Argument $args){
+        return ['user' => $this->userRepository->findBy(
+            [],
+            [],
+            $args['limit'],
+            0
+        )];
+    }
+
+    /**
+     * @param Argument $args
+     * @return null|object
+     */
     public function resolveAuth(){
         return $this->security->getUser();
     }
@@ -49,6 +62,7 @@ class UserResolver implements ResolverInterface, AliasedInterface
     public static function getAliases(): array{
         return [
             'resolve' => 'User',
+            'resolveList' => 'UserList',
             'resolveAuth' => 'UserAuth',
         ];
     }

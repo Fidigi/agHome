@@ -1,21 +1,18 @@
 <?php
-namespace AppContext\Type\Scalar;
+namespace App\GraphQL\Type\Scalar;
 
 use GraphQL\Error\Error;
 use GraphQL\Language\AST\StringValueNode;
 use GraphQL\Type\Definition\CustomScalarType;
 use GraphQL\Utils\Utils;
+use GraphQL\Type\Definition\ScalarType;
+use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 
-class EmailType
+class EmailType extends ScalarType implements AliasedInterface
 {
-    public static function create()
+    public static function getAliases()
     {
-        return new CustomScalarType([
-            'name' => 'Email',
-            'serialize' => [__CLASS__, 'serialize'],
-            'parseValue' => [__CLASS__, 'parseValue'],
-            'parseLiteral' => [__CLASS__, 'parseLiteral'],
-        ]);
+        return ['Email', 'Email'];
     }
 
     /**
@@ -24,7 +21,7 @@ class EmailType
      * @param string $value
      * @return string
      */
-    public static function serialize($value)
+    public function serialize($value)
     {
         // Assuming internal representation of email is always correct:
         return $value;
@@ -40,7 +37,7 @@ class EmailType
      * @param mixed $value
      * @return mixed
      */
-    public static function parseValue($value)
+    public function parseValue($value)
     {
         if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
             throw new \UnexpectedValueException("Cannot represent value as email: " . Utils::printSafe($value));
@@ -55,7 +52,7 @@ class EmailType
      * @return string
      * @throws Error
      */
-    public static function parseLiteral($valueNode)
+    public function parseLiteral($valueNode, array $variables = NULL)
     {
         // Note: throwing GraphQL\Error\Error vs \UnexpectedValueException to benefit from GraphQL
         // error location in query:

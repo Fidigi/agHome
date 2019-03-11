@@ -19,10 +19,12 @@ use GraphQL\Type\Definition\ListOfType;
 use GraphQL\Type\Definition\NonNull;
 use GraphQL\Type\Definition\Type;
 
-use App\GraphQL\Type\Definition\TokenType;
-use App\GraphQL\Type\Definition\UserType;
 use App\GraphQL\Type\Input\LoginInput;
 use App\GraphQL\Type\Input\UserUuidInput;
+use App\GraphQL\Type\Scalar\DateTimeType;
+use App\GraphQL\Type\Scalar\EmailType;
+use App\GraphQL\Type\Scalar\MixedType;
+use App\GraphQL\Type\Scalar\UrlType;
 
 /**
  * Class Types
@@ -36,18 +38,6 @@ use App\GraphQL\Type\Input\UserUuidInput;
  */
 class Types
 {
-    // Interface types
-    //private static $node;
-
-    /**
-     * @return NodeType
-     */
-    /*public static function node()
-    {
-        return self::$node ?: (self::$node = new NodeType());
-    }*/
-    
-    
     // Input types
     private static $loginInput;
     private static $userUuidInput;
@@ -81,20 +71,48 @@ class Types
     }*/
 
     // Custom Scalar types:
-    //private static $emailType;
+    private static $dateTimeType;
+    private static $emailType;
+    private static $mixedType;
+    private static $urlType;
     
     /**
      * @return \GraphQL\Type\Definition\CustomScalarType
      */
-    /*public static function email()
+    public static function date()
     {
-        return self::$emailType ?: (self::$emailType = EmailType::create());
-    }*/
+        return self::$dateTimeType ?: (self::$dateTimeType = DateTimeType());
+    }
+    
+    /**
+     * @return \GraphQL\Type\Definition\CustomScalarType
+     */
+    public static function email()
+    {
+        return self::$emailType ?: (self::$emailType = EmailType());
+    }
+    
+    /**
+     * @return MixedType
+     */
+    public static function mixed()
+    {
+        return self::$mixedType ?: (self::$mixedType = new MixedType());
+    }
 
-
+    /**
+     * @return UrlType
+     */
+    public static function url()
+    {
+        return self::$urlType ?: (self::$urlType = new UrlType());
+    }
 
     // Let's add internal types
 
+    /**
+     * @return \GraphQL\Type\Definition\BooleanType
+     */
     public static function boolean()
     {
         return Type::boolean();

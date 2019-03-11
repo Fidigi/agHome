@@ -1,0 +1,19 @@
+Date:
+    type: custom-scalar
+    config:
+        scalarType: '@=newObject("App\\GraphQL\\Type\\Scalar\\DateTimeType")'
+
+Email:
+    type: custom-scalar
+    config:
+        scalarType: '@=newObject("App\\GraphQL\\Type\\Scalar\\EmailType")'
+
+Mixed:
+    type: custom-scalar
+    config:
+        scalarType: '@=newObject("App\\GraphQL\\Type\\Scalar\\MixedType")'
+
+Url:
+    type: custom-scalar
+    config:
+        scalarType: '@=newObject("App\\GraphQL\\Type\\Scalar\\UrlType")'

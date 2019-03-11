@@ -1,0 +1,23 @@
+User:
+    type: object
+    config:
+        description: "An User"
+        fields:
+            uuid:
+                type: "String!"
+                description: "The unique ID of the user."
+            displayName:
+                type: "String!"
+                access: "@=hasRole('ROLE_USER')"
+            firstname:
+                type: "String!"
+                access: "@=hasRole('ROLE_USER')"
+            lastname:
+                type: "String!"
+                access: "@=hasRole('ROLE_USER')"
+            email:
+                type: "Email!"
+                access: "@=hasRole('ROLE_USER')"
+            roles:
+                type: "[String]!"
+                access: "@=hasRole('ROLE_USER')"

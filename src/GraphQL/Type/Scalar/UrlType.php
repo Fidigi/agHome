@@ -1,33 +1,31 @@
 <?php
-namespace AppContext\Type\Scalar;
+namespace App\GraphQL\Type\Scalar;
 
 use GraphQL\Error\Error;
 use GraphQL\Language\AST\Node;
 use GraphQL\Language\AST\StringValueNode;
-use GraphQL\Type\Definition\ScalarType;
 use GraphQL\Utils\Utils;
+use GraphQL\Type\Definition\ScalarType;
+use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 
-class UrlType extends ScalarType
+class UrlType extends ScalarType implements AliasedInterface
 {
+    public static function getAliases()
+    {
+        return ['Url', 'Url'];
+    }
+
     /**
-     * Serializes an internal value to include in a response.
-     *
      * @param mixed $value
      * @return mixed
      */
     public function serialize($value)
     {
-        // Assuming internal representation of url is always correct:
         return $value;
-
-        // If it might be incorrect and you want to make sure that only correct values are included in response -
-        // use following line instead:
         // return $this->parseValue($value);
     }
 
     /**
-     * Parses an externally provided value (query variable) to use as an input
-     *
      * @param mixed $value
      * @return mixed
      * @throws Error
@@ -41,8 +39,6 @@ class UrlType extends ScalarType
     }
 
     /**
-     * Parses an externally provided literal value to use as an input (e.g. in Query AST)
-     *
      * @param Node $valueNode
      * @param array|null $variables
      * @return null|string
