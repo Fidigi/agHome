@@ -21,6 +21,7 @@ use GraphQL\Type\Definition\Type;
 
 use App\GraphQL\Type\Input\LoginInput;
 use App\GraphQL\Type\Input\UserUuidInput;
+
 use App\GraphQL\Type\Scalar\DateTimeType;
 use App\GraphQL\Type\Scalar\EmailType;
 use App\GraphQL\Type\Scalar\MixedType;

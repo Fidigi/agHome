@@ -40,7 +40,7 @@ class UserResolver implements ResolverInterface, AliasedInterface
      * @return null|object
      */
     public function resolveList(Argument $args){
-        return ['user' => $this->userRepository->findBy(
+        return ['users' => $this->userRepository->findBy(
             [],
             [],
             $args['limit'],

@@ -7,3 +7,12 @@ Token:
                 type: "User"
             token:
                 type: "String!"
+
+TokenList:
+  type: object
+  config:
+    description: "A list of Token"
+    fields:
+      tokens:
+        type: "[Token]"
+        description: "Tokens"

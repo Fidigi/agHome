@@ -4,15 +4,24 @@ List:
         description: "An List"
         fields:
             id:
-                type: "ID!"
+                type: "ID"
                 description: "The unique ID of the list."
-                access: "@=hasRole('ROLE_USER')"
+                #access: "@=hasRole('ROLE_USER')"
             tag:
                 type: "String!"
-                access: "@=hasRole('ROLE_USER')"
+                #access: "@=hasRole('ROLE_USER')"
             label:
                 type: "String!"
-                access: "@=hasRole('ROLE_USER')"
+                #access: "@=hasRole('ROLE_USER')"
             value:
                 type: "String!"
-                access: "@=hasRole('ROLE_USER')"
+                #access: "@=hasRole('ROLE_USER')"
+
+ListList:
+  type: object
+  config:
+    description: "A list of List"
+    fields:
+      lists:
+        type: "[List]"
+        description: "Lists"

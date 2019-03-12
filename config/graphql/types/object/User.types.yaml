@@ -21,3 +21,12 @@ User:
             roles:
                 type: "[String]!"
                 access: "@=hasRole('ROLE_USER')"
+
+UserList:
+  type: object
+  config:
+    description: "A list of User"
+    fields:
+      users:
+        type: "[User]"
+        description: "Users"

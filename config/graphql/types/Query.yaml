@@ -7,5 +7,18 @@ Query:
                 type: "User"
                 resolve: "@=resolver('UserAuth')"
             listList:
-                type: "[List]"
-                resolve: "@=resolver('listList')"
+                type: "ListList"
+                args:
+                    tag:
+                        description: "Tag"
+                        type: "String"
+                    first:
+                        description: "First"
+                        type: "Int"
+                    offset:
+                        description: "offset"
+                        type: "Int"
+                    limit:
+                        description: "limit"
+                        type: "Int"
+                resolve: "@=resolver('ListList', [args])"

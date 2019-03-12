@@ -19,7 +19,7 @@ class TokenManager
     const TOKEN_REGISTER_DURATION = 'now +1 day';
     const TOKEN_LOST_DURATION = 'now +10 min';
     const TOKEN_API_LONG_DURATION = 'now +1 month';
-    const TOKEN_API_SHORT_DURATION = 'now +10 hours';
+    const TOKEN_API_SHORT_DURATION = 'now +10 sec';
 
     use LoggerTrait;
 

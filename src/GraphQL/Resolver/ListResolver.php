@@ -2,7 +2,7 @@
 
 namespace App\GraphQL\Resolver;
 
-use App\Repository\UserRepository;
+use App\Repository\AdmListRepository;
 use Overblog\GraphQLBundle\Definition\Argument;
 use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
@@ -11,20 +11,20 @@ use Symfony\Component\Security\Core\Security;
 class ListResolver implements ResolverInterface, AliasedInterface
 {
     /**
-     * @var UserRepository
+     * @var AdmListRepository
      */
-    private $userRepository;
+    private $admListRepository;
 
     /**
      *
-     * @param UserRepository $userRepository
+     * @param AdmListRepository $admListRepository
      */
     public function __construct(
         Security $security, 
-        UserRepository $userRepository
+        AdmListRepository $admListRepository
     ){
         $this->security = $security;
-        $this->userRepository = $userRepository;
+        $this->admListRepository = $admListRepository;
     }
 
     /**
@@ -32,7 +32,7 @@ class ListResolver implements ResolverInterface, AliasedInterface
      * @return null|object
      */
     public function resolve(Argument $args){
-        return $this->userRepository->find($args['id']);
+        return $this->admListRepository->find($args['id']);
     }
 
     /**
@@ -40,8 +40,12 @@ class ListResolver implements ResolverInterface, AliasedInterface
      * @return null|object
      */
     public function resolveList(Argument $args){
-        return ['list' => $this->userRepository->findBy(
-            [],
+        $criteria = [];
+        if($args['tag']){
+            $criteria['tag'] = $args['tag'];
+        }
+        return ['lists' => $this->admListRepository->findBy(
+            $criteria,
             [],
             $args['limit'],
             0
