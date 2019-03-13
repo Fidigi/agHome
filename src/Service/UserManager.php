@@ -7,7 +7,6 @@ use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Common\HelperTrait\LoggerTrait;
 use App\Entity\User;
-use Faker\Factory;
 
 class UserManager
 {

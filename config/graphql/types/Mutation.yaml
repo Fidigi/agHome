@@ -8,7 +8,7 @@ Mutation:
           crendentials:
             type: "App\\GraphQL\\Type\\Input\\LoginInput!"
         resolve: "@=mutation('login', [args['crendentials']])"
-        description: "signin"
+        description: "Signin"
       token_new:
         type: "Token"
         args:
@@ -16,3 +16,11 @@ Mutation:
             type: "App\\GraphQL\\Type\\Input\\UserUuidInput!"
         resolve: "@=mutation('tokenNew', [args['token']])"
         description: "Add new Token API."
+      list_action:
+        type: "ListList"
+        access: "@=hasRole('ROLE_ADMIN')"
+        args:
+          list:
+            type: "App\\GraphQL\\Type\\Input\\ListInput!"
+        resolve: "@=mutation('listAction', [args['list']])"
+        description: "Create / Update List."

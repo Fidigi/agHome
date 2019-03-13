@@ -46,7 +46,7 @@ trait EntityTitleSlugableTrait
         return $this->slug;
     }
 
-    public function setSlug(?string $slug): self
+    private function setSlug(?string $slug): self
     {
         $this->slug = self::slugify($slug);
 

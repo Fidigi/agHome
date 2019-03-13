@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190311101219 extends AbstractMigration
+final class Version20190313124438 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -23,6 +23,9 @@ final class Version20190311101219 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE adm_list (id INT AUTO_INCREMENT NOT NULL, tag VARCHAR(255) NOT NULL, label VARCHAR(255) NOT NULL, value VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE token CHANGE expired_at expired_at INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE user CHANGE failures failures INT DEFAULT NULL, CHANGE locked_until locked_until INT DEFAULT NULL, CHANGE deleted_at deleted_at DATETIME DEFAULT NULL');
+        $this->addSql('ALTER TABLE wheather CHANGE id id INT UNSIGNED AUTO_INCREMENT NOT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -31,5 +34,8 @@ final class Version20190311101219 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('DROP TABLE adm_list');
+        $this->addSql('ALTER TABLE token CHANGE expired_at expired_at INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE user CHANGE failures failures INT DEFAULT NULL, CHANGE locked_until locked_until INT DEFAULT NULL, CHANGE deleted_at deleted_at DATETIME DEFAULT \'NULL\'');
+        $this->addSql('ALTER TABLE wheather CHANGE id id INT AUTO_INCREMENT NOT NULL');
     }
 }

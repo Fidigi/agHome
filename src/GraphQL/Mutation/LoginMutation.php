@@ -12,6 +12,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 mutation{
   signin(crendentials:{username:"admin",password:"pass"}){
     token
+    user{
+      uuid
+    }
   }
 }
 */

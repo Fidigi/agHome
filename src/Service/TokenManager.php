@@ -8,7 +8,6 @@ use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 use App\Common\HelperTrait\LoggerTrait;
 use App\Entity\Token;
 use App\Entity\User;
-use Faker\Factory;
 
 class TokenManager
 {
@@ -19,7 +18,7 @@ class TokenManager
     const TOKEN_REGISTER_DURATION = 'now +1 day';
     const TOKEN_LOST_DURATION = 'now +10 min';
     const TOKEN_API_LONG_DURATION = 'now +1 month';
-    const TOKEN_API_SHORT_DURATION = 'now +10 sec';
+    const TOKEN_API_SHORT_DURATION = 'now +10 hours';
 
     use LoggerTrait;
 
@@ -76,7 +75,7 @@ class TokenManager
      * @param User $user
      * @return Token
      */
-    public function createTokenApiForUser(User $user, Bool $duration = false)
+    public function createTokenApiForUser(User $user, Bool $longDuration = false)
     {
         $data = [];
         $data['user']=$user;
@@ -91,7 +90,7 @@ class TokenManager
             }
         }
 
-        if($duration) $data['expired_at']=self::TOKEN_API_LONG_DURATION; 
+        if($longDuration) $data['expired_at']=self::TOKEN_API_LONG_DURATION; 
         else $data['expired_at']=self::TOKEN_API_SHORT_DURATION;
 
         return self::createFromArray($data);

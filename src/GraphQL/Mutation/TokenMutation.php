@@ -10,12 +10,7 @@ use Overblog\GraphQLBundle\Definition\Resolver\MutationInterface;
 /*
 mutation{
   token_new(token:{user_uuid:"4ad11d95-5f89-40da-b118-76ec96f57cb6"}){
-    token,
-    user{
-      tokens{
-        token
-      }
-    }
+    token
   }
 }
 */

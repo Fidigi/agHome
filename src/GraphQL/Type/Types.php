@@ -19,6 +19,7 @@ use GraphQL\Type\Definition\ListOfType;
 use GraphQL\Type\Definition\NonNull;
 use GraphQL\Type\Definition\Type;
 
+use App\GraphQL\Type\Definition\ListType;
 use App\GraphQL\Type\Input\LoginInput;
 use App\GraphQL\Type\Input\UserUuidInput;
 
@@ -39,6 +40,17 @@ use App\GraphQL\Type\Scalar\UrlType;
  */
 class Types
 {
+    // Definition types
+    private static $listType;
+
+    /**
+     * @return ListType
+     */
+    public static function listType()
+    {
+        return self::$listType ?: (self::$listType = new ListType());
+    }
+
     // Input types
     private static $loginInput;
     private static $userUuidInput;
