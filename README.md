@@ -39,4 +39,5 @@ chown nobody:nobody -R .
 chmod -R 777 .
 
 php -S 192.168.1.17:8000 -t public
+php -S 192.168.8.134:8000 -t public
 php -S 127.0.0.1:8000 -t public

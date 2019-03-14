@@ -65,8 +65,8 @@ class AdmListMutation implements MutationInterface , AliasedInterface
         $existingLabelList = null;
         $tag = null;
         try {
-            if(!$input['tag'] || $input['tag'] == null){
-                $tag = trim(textpreg_replace('#[^\\pL\d]+#u', '-', $input['label']), '-');
+            if(!$input['tag'] || $input['tag'] == ''){
+                $tag = trim(preg_replace('#[^\\pL\d]+#u', '-', $input['label']), '-');
                 if (function_exists('iconv'))
                 {
                     $tag = iconv('utf-8', 'us-ascii//TRANSLIT', $tag);
